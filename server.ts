@@ -49,12 +49,32 @@ async function ensureDataFile() {
     await fs.access(DATA_FILE);
   } catch {
     const defaultData = {
-      title: "Happy 27th Mensive! ❤️",
-      heroMessage: "27 bulan yang penuh kebahagiaan.",
-      secretMessage: "I love you forever.",
-      musicUrl: "",
-      gallery: [],
-      boxMessages: []
+      title: "Happy 27th Mensive, Bebeyy! ❤️",
+      heroMessage: "ga kerasa sudah berjalan 27 bulan kita bersama beyy, rendyy berharap kita bisa ulangin lagi tanggal kita sampe berbulan - bulan bahkan bertahun - tahun. terimakasih bebeyy udah nemenin rendyy. you are a very important role and very very meaningful in my life. I LOVE YOU MORE BEYY😘🤗❤️",
+      secretMessage: "Terima kasih sudah bertahan sampai saat ini. I love you more than words can say beyy. 💕",
+      musicUrl: "/uploads/memories-1781009504158-396011351.mp3",
+      gallery: [
+        "https://images.unsplash.com/photo-1518199266791-5375a5078a63?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1516589178581-6cd78536f9e5?auto=format&fit=crop&w=800&q=80"
+      ],
+      boxMessages: [
+        {
+          id: "1",
+          title: "UNTUK BEBEYY",
+          content: "Terima kasih telah hadir di hidup rendyy"
+        },
+        {
+          id: "2",
+          title: "Tentang Waktu",
+          content: "Waktu berjalan begitu cepat, tapi bersamamu aku tidak pernah keberatan."
+        },
+        {
+          id: "3",
+          title: "Untuk Masa Depan",
+          content: "Kalau suatu hari kita sedang lelah, semoga kita ingat alasan mengapa kita bertahan sejauh ini."
+        }
+      ]
     };
     await fs.writeFile(DATA_FILE, JSON.stringify(defaultData, null, 2), 'utf-8');
   }

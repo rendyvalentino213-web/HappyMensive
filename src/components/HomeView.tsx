@@ -39,7 +39,7 @@ export default function HomeView({ config, onAdminClick }: HomeViewProps) {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-zinc-950 pb-20 text-zinc-100">
+    <div className="relative min-h-screen overflow-hidden pb-20 text-zinc-100 bg-transparent">
       {/* Dynamic gradients in background */}
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-rose-600/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-red-600/20 rounded-full blur-[100px] pointer-events-none" />
@@ -92,7 +92,7 @@ export default function HomeView({ config, onAdminClick }: HomeViewProps) {
           transition={{ duration: 1 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-rose-500 mb-6 leading-tight drop-shadow-[0_0_15px_rgba(225,29,72,0.5)]">
+          <h1 className="text-5xl md:text-7xl font-bold font-dancing text-rose-500 mb-6 leading-tight drop-shadow-[0_0_15px_rgba(225,29,72,0.5)]">
             {config.title}
           </h1>
           <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto font-medium">
@@ -200,7 +200,7 @@ export default function HomeView({ config, onAdminClick }: HomeViewProps) {
                   className="flex flex-col items-center gap-4"
                 >
                   <Unlock size={32} className="text-rose-500 mb-2 drop-shadow-[0_0_10px_rgba(225,29,72,0.5)]" />
-                  <p className="text-2xl text-rose-500 font-bold italic leading-relaxed">
+                  <p className="text-3xl md:text-4xl font-dancing text-rose-500 font-bold italic leading-relaxed">
                     "{config.secretMessage}"
                   </p>
                 </motion.div>
@@ -212,7 +212,7 @@ export default function HomeView({ config, onAdminClick }: HomeViewProps) {
         {/* Custom Message Boxes */}
         {config.boxMessages.length > 0 && (
           <div className="mb-24">
-            <h2 className="text-3xl font-bold text-center text-rose-500 mb-12 drop-shadow-[0_0_10px_rgba(225,29,72,0.3)]">Catatan Untuk Kita</h2>
+            <h2 className="text-4xl md:text-5xl font-dancing font-bold text-center text-rose-500 mb-12 drop-shadow-[0_0_10px_rgba(225,29,72,0.3)]">Catatan Untuk Kita</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {config.boxMessages.map((msg, idx) => (
                 <motion.div
@@ -221,7 +221,7 @@ export default function HomeView({ config, onAdminClick }: HomeViewProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="bg-zinc-900/80 backdrop-blur p-6 rounded-2xl border border-zinc-800 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:border-rose-500/30 transition-colors"
+                  className="bg-zinc-900/80 backdrop-blur p-6 rounded-2xl border border-zinc-800 shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:shadow-[0_0_30px_rgba(244,63,94,0.3)] hover:border-rose-500/50 transition-all duration-300"
                 >
                   <h3 className="font-bold text-rose-500 text-xl mb-3">{msg.title}</h3>
                   <p className="text-zinc-300 leading-relaxed">{msg.content}</p>
@@ -234,7 +234,7 @@ export default function HomeView({ config, onAdminClick }: HomeViewProps) {
         {/* Photo Gallery */}
         {config.gallery.filter(u => u.trim() !== '').length > 0 && (
           <div>
-            <h2 className="text-3xl font-bold text-center text-rose-500 mb-12 drop-shadow-[0_0_10px_rgba(225,29,72,0.3)]">Kenangan Kita</h2>
+            <h2 className="text-4xl md:text-5xl font-dancing font-bold text-center text-rose-500 mb-12 drop-shadow-[0_0_10px_rgba(225,29,72,0.3)]">Kenangan Kita</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {config.gallery.filter(u => u.trim() !== '').map((url, idx) => (
                 <motion.div
@@ -243,7 +243,7 @@ export default function HomeView({ config, onAdminClick }: HomeViewProps) {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="group relative aspect-square overflow-hidden rounded-2xl shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-zinc-800"
+                  className="group relative aspect-square overflow-hidden rounded-2xl shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:shadow-[0_0_30px_rgba(244,63,94,0.3)] border border-zinc-800 hover:border-rose-500/50 transition-all duration-300"
                 >
                   <img 
                     src={getDirectImageUrl(url)} 

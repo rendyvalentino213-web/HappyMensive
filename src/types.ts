@@ -9,6 +9,7 @@ export interface AppConfig {
   heroMessage: string;
   secretMessage: string;
   musicUrl: string;
+  backgroundImage?: string;
   gallery: string[];
   boxMessages: BoxMessage[];
 }

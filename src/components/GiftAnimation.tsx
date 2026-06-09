@@ -28,7 +28,7 @@ export default function GiftAnimation({ onComplete }: { onComplete: () => void }
 
   return (
     <motion.div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950 px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-zinc-950 via-rose-950 to-pink-950 overflow-hidden px-4"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1.5 }}
@@ -40,7 +40,7 @@ export default function GiftAnimation({ onComplete }: { onComplete: () => void }
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="text-2xl font-bold text-rose-500 mb-8"
+              className="text-4xl md:text-5xl font-dancing text-rose-500 mb-8 drop-shadow-md"
             >
               Halo Beyy, kamu dapat hadiah dari Rendy
             </motion.h1>

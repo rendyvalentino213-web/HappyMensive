@@ -92,8 +92,9 @@ export default function AdminView({ config: initialConfig, onSave, onBack }: Adm
   const [uploading, setUploading] = useState(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const audioInputRef = useRef<HTMLInputElement>(null);
+  const bgInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: 'image' | 'audio') => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: 'image' | 'audio' | 'bg') => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -140,6 +141,22 @@ export default function AdminView({ config: initialConfig, onSave, onBack }: Adm
             return newConfig;
           });
           setMessage('Musik berhasil diunggah!');
+        } else if (type === 'bg') {
+          setConfig(prev => {
+            const newConfig = {
+              ...prev,
+              backgroundImage: data.url
+            };
+            
+            fetch('/api/config', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(newConfig)
+            }).catch(console.error);
+
+            return newConfig;
+          });
+          setMessage('Background berhasil diunggah!');
         }
       } else {
         alert('Upload gagal');
@@ -153,6 +170,9 @@ export default function AdminView({ config: initialConfig, onSave, onBack }: Adm
       }
       if (type === 'audio' && audioInputRef.current) {
         audioInputRef.current.value = '';
+      }
+      if (type === 'bg' && bgInputRef.current) {
+        bgInputRef.current.value = '';
       }
     }
   };
@@ -190,7 +210,7 @@ export default function AdminView({ config: initialConfig, onSave, onBack }: Adm
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-zinc-950 min-h-screen text-zinc-100">
+    <div className="max-w-4xl mx-auto p-6 bg-zinc-950/90 backdrop-blur-md rounded-2xl my-8 min-h-screen text-zinc-100 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
       <div className="flex items-center justify-between mb-8 pb-4 border-b border-zinc-800">
         <div className="flex items-center gap-4">
           <button onClick={onBack} className="p-2 hover:bg-zinc-800 rounded-full transition-colors">
@@ -288,6 +308,35 @@ export default function AdminView({ config: initialConfig, onSave, onBack }: Adm
                   disabled={uploading}
                   className="flex items-center gap-1 text-sm bg-rose-600 text-white hover:bg-rose-500 px-4 py-2 rounded-lg transition-colors shadow-sm disabled:opacity-50"
                   title="Upload MP3"
+                >
+                  <Upload size={16} />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-zinc-400 mb-1">Background Image (Opsional)</label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  name="backgroundImage"
+                  value={config.backgroundImage || ''}
+                  onChange={handleChange}
+                  placeholder="URL Gambar atau Upload"
+                  className="flex-1 p-3 bg-zinc-900 border border-zinc-700 rounded-lg focus:ring-2 focus:ring-rose-500/50 outline-none transition-colors"
+                />
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  className="hidden" 
+                  ref={bgInputRef}
+                  onChange={(e) => handleFileUpload(e, 'bg')}
+                />
+                <button 
+                  onClick={() => bgInputRef.current?.click()} 
+                  disabled={uploading}
+                  className="flex items-center gap-1 text-sm bg-rose-600 text-white hover:bg-rose-500 px-4 py-2 rounded-lg transition-colors shadow-sm disabled:opacity-50"
+                  title="Upload Background"
                 >
                   <Upload size={16} />
                 </button>

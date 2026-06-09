@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import HomeView from './components/HomeView';
 import AdminView from './components/AdminView';
-import RoseAnimation from './components/RoseAnimation';
+import GiftAnimation from './components/GiftAnimation';
 import { AppConfig } from './types';
 
 export default function App() {
@@ -27,7 +27,7 @@ export default function App() {
   }, []);
 
   if (showInitAnim) {
-    return <RoseAnimation onComplete={() => setShowInitAnim(false)} />;
+    return <GiftAnimation onComplete={() => setShowInitAnim(false)} />;
   }
 
   if (loading) {

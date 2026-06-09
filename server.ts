@@ -3,7 +3,6 @@ import path from 'path';
 import fs from 'fs/promises';
 import fsSync from 'fs';
 import multer from 'multer';
-import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 
 const app = express();
@@ -39,9 +38,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 
 app.use('/uploads', express.static(uploadDir));
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const DATA_FILE = path.join(__dirname, 'data.json');
+const DATA_FILE = path.join(process.cwd(), 'data.json');
 
 // Ensure data file exists with default values if not present
 async function ensureDataFile() {
